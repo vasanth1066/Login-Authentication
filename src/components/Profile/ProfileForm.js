@@ -1,8 +1,10 @@
 import classes from "./ProfileForm.module.css";
 import CartContext from "../../Store/CartContext";
 import { useContext, useRef } from "react";
+import { useHistory } from "react-router-dom";
 
 const ProfileForm = () => {
+  const history = useHistory();
   const enteredpasswordref = useRef();
   const cartcontext = useContext(CartContext);
 
@@ -23,7 +25,11 @@ const ProfileForm = () => {
           "Content-Type": "application/json",
         },
       }
-    );
+    ).then((res) => {
+      alert("Successfully password changed");
+      cartcontext.logout();
+      history.replace("/auth");
+    });
   };
   return (
     <form className={classes.form} onSubmit={submithandler}>

@@ -2,6 +2,7 @@ import { useState, useRef, useContext } from "react";
 
 import classes from "./AuthForm.module.css";
 import CartContext from "../../Store/CartContext";
+import { useHistory } from "react-router-dom";
 
 const AuthForm = () => {
   const cartcontext = useContext(CartContext);
@@ -9,6 +10,8 @@ const AuthForm = () => {
   const [isLoading, setIsloading] = useState(false);
   const enteredemail = useRef();
   const enteredpassword = useRef();
+
+  const history = useHistory();
 
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
@@ -58,6 +61,7 @@ const AuthForm = () => {
       .then((data) => {
         console.log(data);
         cartcontext.addItem(data.idToken);
+        history.replace("/profile");
       })
       .catch((err) => {
         alert(err.message);

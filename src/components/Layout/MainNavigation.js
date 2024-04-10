@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import CartContext from "../../Store/CartContext";
+import { useHistory } from "react-router-dom";
 
 import classes from "./MainNavigation.module.css";
 import { useContext } from "react";
 
 const MainNavigation = () => {
+  const history = useHistory();
   const cartcontext = useContext(CartContext);
 
   const isLoggedIn = cartcontext.isLoggedIn;
@@ -12,6 +14,7 @@ const MainNavigation = () => {
   const logoutHandler = (event) => {
     event.preventDefault();
     cartcontext.logout();
+    history.replace("/");
   };
   return (
     <header className={classes.header}>
