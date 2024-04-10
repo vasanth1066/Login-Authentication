@@ -12,9 +12,8 @@ const MainNavigation = () => {
   const isLoggedIn = cartcontext.isLoggedIn;
 
   const logoutHandler = (event) => {
-    event.preventDefault();
     cartcontext.logout();
-    history.replace("/");
+    history.replace("/auth");
   };
   return (
     <header className={classes.header}>
