@@ -61,7 +61,7 @@ const AuthForm = () => {
       .then((data) => {
         console.log(data);
         cartcontext.addItem(data.idToken);
-        history.replace("/profile");
+        history.replace("/");
       })
       .catch((err) => {
         alert(err.message);
