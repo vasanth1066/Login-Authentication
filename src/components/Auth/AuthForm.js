@@ -1,8 +1,10 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 
 import classes from "./AuthForm.module.css";
+import CartContext from "../../Store/CartContext";
 
 const AuthForm = () => {
+  const cartcontext = useContext(CartContext);
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsloading] = useState(false);
   const enteredemail = useRef();
@@ -55,6 +57,7 @@ const AuthForm = () => {
       })
       .then((data) => {
         console.log(data);
+        cartcontext.addItem(data.idToken);
       })
       .catch((err) => {
         alert(err.message);
