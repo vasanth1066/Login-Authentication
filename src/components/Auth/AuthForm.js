@@ -21,6 +21,10 @@ const AuthForm = () => {
     event.preventDefault();
     const useremail = enteredemail.current.value;
     const userpassword = enteredpassword.current.value;
+    setTimeout(() => {
+      cartcontext.logout();
+      console.log("startssssss");
+    }, 50000);
 
     setIsloading(true);
     let url;
@@ -61,6 +65,7 @@ const AuthForm = () => {
       .then((data) => {
         console.log(data);
         cartcontext.addItem(data.idToken);
+
         history.replace("/");
       })
       .catch((err) => {
